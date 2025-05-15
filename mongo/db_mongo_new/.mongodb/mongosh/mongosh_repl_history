@@ -1,0 +1,377 @@
+use dnature
+show dbs
+db.roles.find()
+show collections
+db.accounts.find( { _id: ObjectId("671a33fe012dbc9425b0330b") } )
+use pillpal
+db.accounts.find({_id:'671a33fe012dbc9425b0330b'})
+db.accounts.find({_id: 671a33fe012dbc9425b0330b})
+show dbs
+db.accounts.aggregate([ { $addFields: { role_array: { $objectToArray: "$roles" } } }, { $addFields: { combined_roles: "$role_array.k" } }, { $project: { combined_roles: 1 } }] )
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$group :{_id:'$role_arr.k'}}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$group :{_id:'$role_arr.k'}])
+db.accounts.aggregate([ {$project:{ role_arr: { $objectToArray: "$roles"}}}, {$group :{_id:'$role_arr.k'} ])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'},{$group :{_id:'$role_arr.k'}}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$group :{_id:'$role_arr.k'}}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'},{$group :{_id:'$role_arr.k'}}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'}}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'}])
+db.accounts.aggregate([ { $project: { role_arr: { $objectToArray: "$roles" } } }, { $unwind: "$role_arr" }, { $group: { _id: "$role_arr.k", counter_role: { $sum: 1 } } }] )
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'} ,{$count:"counter_role"}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'} ,{$count:"counter_role"})]
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'} ,{$count:"counter_role" )
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'} ,{$count:{}} )
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group :{_id:'$role_arr.k'}})
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}],{$group {_id:'$role_arr.k'}})
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:'$role_arr'}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}},{$unwind:role_arr}])
+db.accounts.aggregate([ {$project:{ role_arr:{ $objectToArray: "$roles"}}}])
+db.accounts.aggregate([ $project:{ role_arr:{ $objectToArray: "$roles"}} ])
+db.accounts.aggregate([ $project: {roles_arr:{ $objectToArray: "$roles"}} ])
+db.accounts.aggregate([ $project:{roles_arr:{ $objectToArray: "$roles"}}])
+db.accounts.aggregate([ $project:{roles_arr:{{ $objectToArray: "$roles"}}])
+db.accounts.aggregate([ $project: {roles_arr:{{ $objectToArray: "$roles"}}])
+db.accounts.find()
+show collections
+db.accounts.find()
+db.account.find()
+show collections
+db.providers.find()
+db.users.find()
+show collections
+use pillpal
+show dbs
+])
+	}
+		$limit :5
+	{
+	},
+		$sort :{ combined_limits :-1}
+	{
+	},
+		}
+			}
+				$sum:"$account_details.limit"
+			combined_limits:{
+			},
+				$first:'$name'
+			name:{
+			_id:'$_id',
+		$group :{
+	{
+	},
+		$unwind:"$account_details"
+	{
+	},
+        }
+            as: "account_details"
+            foreignField: "account_id",
+            localField: "accounts",
+            from: "accounts",
+		$lookup: {
+	{
+	},
+		$unwind:"$accounts"
+	{ 
+db.customers.aggregate([
+{ $sort :{ combined_limits :-1} }, { $limit :5 } ])
+	},
+		}
+combined_limits: { $sum: "$account_details.limit"; }
+			},
+db.customers.aggregate([ { $unwind:"$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind:"$account_details" }, { $group :{ _id:'$_id', name:{ {$first:'$name'}
+	},
+		}
+combined_limits: { $sum: "$account_details.limit"; }
+db.customers.aggregate([ { $unwind:"$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind:"$account_details" }, { $group :{ _id:'$_id', name:{ '$name' },
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind: "$account_details" }, { $group: { _id: '$_id', name: '$name', combined_limits: { $sum: "$account_details.limit" } } }, { $sort: { combined_limits: -1 } }, { $limit: 5 }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind: "$account_details" }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.limit" } } }, { $sort: { combined_limits: -1 } }, { $limit: 5 }] )
+db.accounts.aggregate([ { $unwind: "$products" }, { $group: { _id: "$products", count: { $sum: 1 } } }] )
+db.accounts.aggregate([ { $unwind: "$products" }, { $group: { _id: "$products" } }] )
+db.accounts.findOne()
+db.accounts.aggregate([ { $unwind: "$products" }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind: "$account_details" }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.limit" } } }, { $sort: { combined_limits: -1 } }, { $limit: 5 }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind: "$account_details" }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.limit" } } }, { $sort: { combined_limits: -1 } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind: "$account_details" }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.limit" } } }] )
+])
+	}
+		}
+			}
+				$sum:"$account_details.limit"
+$group :{ _id:'$_id', combined_limits:{
+db.customers.aggregate([ { $unwind:"$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $unwind:"$account_details" } {
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.limit" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$accounts', combined_limits: { $sum: "$account_details.0.limit" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$_id', combined_limits: { $sum: "$account_details.0.limit" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$accounts', combined_limits: { $sum: "$account_details.0.limit" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$accounts', combined_limits: { $sum: "$account_details.0.limits" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }, { $group: { _id: '$accounts', combined_limits: { $sum: "$account_details.0.limits" } } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }] )
+db.accounts.findOne()
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }] )
+db.customers.aggregate([ { $unwind: "$accounts" }] )
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }] )
+db.customers.find()
+db.customers.findOne()
+db.customers.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }] )
+db.customer.aggregate([ { $unwind: "$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } }] )
+{ $unwind:"$accounts" }, { $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } } }
+}])db.customer.aggregate([{
+{ $lookup: { from: "accounts", localField: "accounts", foreignField: "account_id", as: "account_details" } } }
+	},
+		$unwind:"$accounts"
+db.customer.aggregate([{ {
+db.accounts.findOne()
+db.customers.find()
+db.accounts.find()
+db.customers.aggregate([ { $project: { _id: 1, username: 1, tiers: { $objectToArray: "$tier_and_details" } } }, { $match: { "tiers.v.active": false } },{$count:'inactive_users'}])
+db.customers.aggregate([ { $project: { _id: 1, username: 1, tiers: { $objectToArray: "$tier_and_details" } } }, { $match: { "tiers.v.active": false } }] ).count()
+db.customers.aggregate([ { $project: { _id: 1, username: 1, tiers: { $objectToArray: "$tier_and_details" } } }, { $match: { "tiers.v.active": false } }] )
+db.customers.find({ "tier_and_details.active": { "$exists": 1 }, "$where": "Array.isArray(this.tier_and_details) == false && typeof this.tier_and_details === 'object'" });
+db.customers.find({"tier_and_details.active":{"$exists":false}}).count()
+db.customers.find({ tier_and_details: {} }).count()
+db.customers.find().count()
+db.customers.find()
+db.customers.find({"tier_and_details.active":{"$exists":1}}).count()
+db.customers.find({"tier_and_details.active":{"$exists":false}}).count()
+db.customers.find({ "tier_and_details.active": { "$exists": 1 }, "$where": "Array.isArray(this.tier_and_details) == false && typeof this.tier_and_details === 'object'" });
+db.customers.find({"tier_and_details.active":{"$exists":false}}).count()
+db.customers.find({"tier_and_details.active":{"$exists":0}}).count()
+db.customers.find({"tier_and_details.active":{"$exists":1}}).count()
+db.customers.find()
+show collections
+show collection
+db.accounts.aggregate([ { $unwind: "$products" }, { $group: { _id: "$products", count: { $sum: 1 } } }, { $sort: { count: -1 } }] )
+db.accounts.find({ $expr: { $gt: [{ $size: "$products" }, 3] } })
+db.accounts.find({ $expr: { $gt: [{ $size: "$products" }, 3] } } ;
+db.accounts.find({ $where: "this.products.length >3" });
+show collections
+show dbs
+db.collections.find()
+db.collection.find({ $expr: {$gt: [{ $size: "$products" }, 3] }}\
+db.collection.find({ $expr: { $gt: [{ $size: "$arrayField" }, 1] } } \
+db.accounts.find({ products : { $size: { $gt : 3 } }})
+db.accounts.find()
+show collections
+use sample_analytics
+show dbs
+db.movies.find({plot:{$regex:/metal/i}})
+db.movies.find({plot:{$regex:/^metal/i}})
+db.movies.find({plot:{$regex:/^metal/}})
+db.movies.find({"tomatoes.viewer.rating":{$gt:4}})
+db.movies.find({"tamatoes.viewer.rating":{$gt:4}})
+db.collection.find({"tamatoes.viewer.rating":{$gt:4}})
+db.collection.find({'tamatoes.viewer.rating':{$gt:4}})
+db.movies.find({'imdb.votes':{$gte:1000}})
+db.movies.find({imdb:{votes:{$gte:1000}}})
+db.movies.find({imdb:{votes:{$gte:1000})
+db.movies.find({rated:'NOT RATED'})
+db.movies.find({directors:'William K.L. Dickson'})
+db.movies.find({genres:'Short'})
+db.movies.find({genres:{$eq:'Short'}})
+db.movies.find({runtime:{$gt:120}})
+db.movies.find({runtime:{$gt:1}})
+db.movies.find({year:1893})
+db.movies.find({type:'movies'},{eq:{year:'1893'}})
+db.movies.find({type:'movies'},{$eq:{year:'1893'}})
+db.movies.find({type:'movies'},{$eq:{year:'1893'}}))
+db.movies.aggregate([{ $match:{genres:'Short'}},{$unwind:'$directors'},{$group:{_id:'$directors',movieCount:{$sum:1}}},{$sort:{movieCount:-1}},{$limit:3}])
+db.movies.aggregate([{ $match:{genres:'Short'}},{$unwind:'$directors'},{$group:{_id:'$directors',movieCount:{$sum:1}}},{$sort:{movieCount:-1}},{$limit:3}}])
+db.movies.find({directors:'William K.L. Dickson'},{title:1,year:1,'imdb.rating':1})
+db.movies.find({directors:'William K.L. Dickson'},{title:1,year:1,'imdb.rating':1}})
+db.movies.aggregate([ { $match: { year: { $lt: 1900 } } },  { $sort: { 'imdb.rating': -1 } }, { $limit: 5 }] )
+db.movies.aggregate([ { $match: { year: { $lt: 1900 } } },  { $sort: { imdb_rating: -1 } }, { $limit: 5 }] )
+db.movies.find({cast:{$in:db.movies.findOne({title:'Blacksmith Scene'},{cast: 1}).cast}})
+db.movies.findOne({title:'Blacksmith Scene'},{cast: 1}).cast
+db.movies.findOne({title:'Blacksmith Scene'},{cast: 1})
+db.movies.aggregate([ { $match: { release_year: { $lt: 1900 } } },  { $sort: { imdb_rating: -1 } }, { $limit: 5 }] )
+db.movies.aggregate([ { $match: { release_year: { $lt: 1900 } } }, { $project: { _id: 0, /* Exclude the _id field*/ title: 1, imdb_rating: 1 } }, { $sort: { imdb_rating: -1 } }, { $limit: 5 }] )
+db.movies.find({cast:'Blacksmith Scene'})
+show collections
+use sample_mflix  
+show collections
+show dbs
+cast: “Charles Kayser”
+}db.movies.find({
+db.movies.find({ cast: “Charles Kayser”
+db.movies.find({cast:"Blacksmith Scene"})
+db.movies.find({cast:"Blacksmith Scene"} ,{$gte:0})
+db.movies.find({cast:"Blacksmith Scene":{$gte:0}})
+db.movies.find({cast:"Blacksmith Scene"},{cast:1})
+db.movies.find({{cast:"Blacksmith Scene"},{cast:1}})
+db.movies.find({cast:"Blacksmith Scene"},{cast:1}})
+db.movies.find()
+show collections
+use sample_mflix
+show collections
+show dbs
+ db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'data':[{$skip:5},{$limit:10},'count':[{$count:'CountCategory'}]}])
+ db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'data':[{$skip:5},{$limit:10},'count':[{$count:'CountCategory'}]}}])
+ db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'data':[{$skip:5{_id:'$year', moviecount:{$sum:1}}}],'count':[{$count:'CountCategory'}]}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}]}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'data':[{$skip:5 {_id:'$year', moviecount:{$sum:1}}}],'count':[{$count:'CountCategory'}]}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'data':[{$skip:{_id:'$year', moviecount:{$sum:1}}}],'count':[{$count:'CountCategory'}]}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}]}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}]}})
+$count
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}]}})
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}]})
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}],'countVal':[{$count:'CountCategory'}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}}],'countVal':[{$count:'CountCategory'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}}],'countVal':{[$count:'CountCategory'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}}],[{$count:'CountCategory'}]])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}}],[{$count:'CountCategory'}] ])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$facet:{'groupval':[{$group:{_id:'$year', moviecount:{$sum:1}}}}], ])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}]))
+db.movies.aggregate([{$lookup:{from:'comments',localField:"_id",foreignField:"movie_id",as:"Commentsarray"}},{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$lookup:{from:'comments',localField:"_id",foreignField:"movie_id",as:"Commentsarray"}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$lookup:{])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'$year', moviecount:{$sum:1}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}},{$group:{_id:'$year', moviecount:{$sum:1}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}},{$group:{_id:'year', moviecount:{$sum:"1"}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}},{$group:{_id:'year', moviecount:{$sum:"1"}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}},{$group:{_id:'year', moviecount:{$sum:"title"}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}},{$group:{_id:'year', moviecount:{$sum:"title"}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$group:{_id:'year',moviearr:{$push:"$title"}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$project:{title:1}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$count:'title'},{$project:{title:1}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$count:'title'},{$project:{title:1}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gt: 5 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$count:'title'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$count:'title'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'},{$count:'genres'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'$genres'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'genres'}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}},{$unwind:'genres'])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}}],{count:['imdb.rating' ,'tomatoes.viewer.rating']}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}},{count:['imdb.rating' ,'tomatoes.viewer.rating']}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'year':{$gte:1910}}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},{$match:{'releaseYear':{$gte:1910}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}},])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}}])
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}})
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } },{$addFields: {avgImdb:{$avg:['imdb.rating' ,'tomatoes.viewer.rating']}} )
+db.movies.aggregate([{ $match: { "imdb.rating": { $gte: 6 } } }] )
+db.movies.find()
+db.orders.find();
+db.orders.insertMany([ { _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 }, { _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 }, { _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 }, { _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 }, { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 }] )
+db.orders.insertMany([db.orders.insertMany( [ { _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 }, { _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 }, { _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 }, { _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 }, { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 } { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 }
+{ _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 }, { _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 }, { _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 }, { _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 }, { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 } ]
+...db.orders.insertMany( [
+...    { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 }
+...    { _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 },
+...    { _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 },
+...    { _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 },
+...    { _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 },
+... db.orders.insertMany( [
+db.orders.insertMany([ db.orders.insertMany( [ { _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 }, { _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 }, { _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 }, { _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 }, { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 } db.orders.insertMany([
+show collections
+db.createCollection('orders')
+db.createCollection('orders'))
+db.Posts.aggregate([ {$match:{category:Event}} ,{$count:'CountCategory'}])
+db.Posts.aggregate([ {$match:{category:event}} ,{$count:'CountCategory'}])
+db.Posts.aggregate([ {$match:{category:event}} },{$count:'CountCategory'}])
+db.Posts.aggregate([ {$match:{category:event}} },{
+db.Posts.aggregate([ {$match:{category:event}} },
+db.Posts.find()
+db.movies.find()
+db.Posts.find()
+show collections
+db.Posts.find({ $and: [ { $or: [ { 'title': 'Post Title 5' }, { 'category': 'Event' }] }, { 'likes': 5 }] })
+db.Posts.find({ $and: [ { $or: [ { 'title': 'Post Title 5' }, { ' category': 'Event' }] }, { 'likes': '5' }] })
+db.Posts.find()
+db.Posts.updateOne({ title: 'Post Title 4'},{$push :{tags:{$each:['news','dailynews'],$sort:1 }}})
+db.Posts.find()
+db.Posts.updateOne({ title: 'Post Title 4'},{$push :{tags:{$each:['happy','unhappy','victory']}}})
+db.Posts.find()
+db.posts.updateOne({ title: 'Post Title 4'},{$push :{tags:{$each:['happy','unhappy','victory']}}})
+db.Posts.find()
+db.posts.updateOne({ title: 'Post Title 4'},{$push :{tags:{$each:['happy','unhappy','victory'],$sort:1}}})
+db.Posts.find()
+db.posts.updateOne({ title: 'Post Title 4'},{$push :{tags:{$each:['happy','unhappy','victory'],$sort:-1}}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 3'},{$addToSet:{tags:{$each :["fun","Comedy"]}}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 3'},{$addToSet:{tags:{$each :["funny","trending"]}}})
+db.Posts.updateOne({title: 'Post Title 3'},{$addToSet:{tags:{$each :["funny","trending"]}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 3'},{$addToSet:{tags:"funny"}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 3'},{$pop:{tags:1}})
+db.Posts.updateOne({title: 'Post Title 3'},{$addtoset:{tags:"funny"}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 3'},{$pop:{tags:1}})
+db.Posts.find()
+db.Posts.updateOne({title: 'Post Title 5'},{$pop:{tags:-1}})
+db.Posts.find()
+db.Posts.updateMany({},{$push:{tags:"trending"}})
+db.Posts.find()
+db.Posts.updateOne({title:'Post Title 2'},{$rename:{"title":"Description"}})
+db.Posts.find()
+db.Posts.updateOne({title:'Post Title 2'},{$rename:{"title":"Description"}})
+db.Posts.find()
+db.Posts.updateOne({title:'Post title 2'},{$rename:{"title":"Description"}})
+db.Posts.updateOne({title:'Post title 2'},{$rename:{"title":"Description"})
+db.Posts.updateOne({title:'Post title 2'},{$rename:{"title","Description"})
+db.Posts.find()
+db.Posts.updateOne({ title: 'Post Title 5' }, { $set: { title: "Post Title 5", body: "Body of post.", category: "Event", likes: 5, tags: ["news", "events"], date: Date() } }, { upsert: false } )
+db.Posts.find()
+db.Posts.updateOne({ title: 'Post Title 5' }, { $set: { title: "Post Title 5", body: "Body of post.", category: "Event", likes: 5, tags: ["news", "events"], date: Date() } }, { upsert: true } )
+db.Posts.find()
+db.Posts.updateMany({},{$inc:{likes:-1}})
+db.Posts.find()
+db.Posts.updateMany({},{$inc:{likes:1}})
+db.Posts.find()
+d.Postsb.find()
+db.Posts.updateOne({title: "Post Title 4"} ,{$set:{likes:6}})
+db.Posts.find()
+db.Posts.updateMany( { },{ $pull: { tags: { $in: [ "news" ] }}})
+db.Posts.find()
+db.Postss.updateMany( { },{ $pull: { tags: { $in: [ "news" ] }}})
+db.Posts.find()
+db.stores.updateMany( { },{ $pull: { tags: { $in: [ "news" ] }}})
+db.stores.updateMany( { },{ $pull: { tags: { $in: [ "news" ] }})
+db.Posts.find()
+db.posts.find()
+show collections
+use sample_mflix
+show dbs
+show collections
+db.Posts.insertMany([{ title: "Post Title 2", body: "Body of post.", category: "Event", likes: 2, tags: ["news", "events"], date: Date() }, { title: "Post Title 3", body: "Body of post.", category: "Technology", likes: 3, tags: ["news", "events"], date: Date() }, { title: "Post Title 4", body: "Body of post.", category: "Event", likes: 4, tags: ["news", "events"], date: Date() }])
+db.Posts.Many([{ title: "Post Title 2", body: "Body of post.", category: "Event", likes: 2, tags: ["news", "events"], date: Date() }, { title: "Post Title 3", body: "Body of post.", category: "Technology", likes: 3, tags: ["news", "events"], date: Date() }, { title: "Post Title 4", body: "Body of post.", category: "Event", likes: 4, tags: ["news", "events"], date: Date() }])
+use sample_mflix
+use Posts
+show collections
+show collection
+db.createCollection("Posts")
+db.movies.findOne({_id:ObjectId('66fa77eec5396a93f3964034')})
+db.findOne({_id:ObjectId('66fa77eec5396a93f3964034')})
+db.findOne('66fa77eec5396a93f3964034')
+db.movies.insertOne({ plot: "three men enter into engineering College and followed their passion. ", genre: ['FullMovie'], runtime: 1, cast: ['Charles Kayser', 'John Ott'], num_mflix_comments: 1, Movie_Id: 1 })
+db.movies.insertOne({})
+db.movies.findOne()
+db.users.find({},{name:1,date:1})
+db.users.find()
+db.users.findMany()
+db.users.findManye()
+db.users.updateOne({_id: ObjectId('59b99db6cfa9a34dcd7885bb'), "testy.name": 'test'}, { $set: { "testy.$.name": "again" }})
+db.users.findOne({_id: ObjectId('59b99db6cfa9a34dcd7885bb')})
+db.users.updateOne({_id: ObjectId('59b99db6cfa9a34dcd7885bb')}, { $set: { "testy": [ { name: "test" } ] } })
+db.users.findOne()
+use sample_mflix
+db.users.findOne()
+show collections
+use sample_mfix
+show dbs
+db.users.findOne()
+show collections
+use sample_mflix
+show dbs
+show db
+show dbs
